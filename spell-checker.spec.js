@@ -38,6 +38,16 @@ describe('spell-checker', () => {
                     expect(actual).toEqual(expected)
                 })
             })
+
+            describe('when there is a long list of words with no misspelled words', () => {
+                const longWordList = fs.readFileSync('mock-data/super-long-list-of-words.txt', 'utf8').split(/\s+/)
+                const actual = checkSpelling(fullDictionary, longWordList)
+
+                it('should output that there are no misspelled words in a performant manner', () => {
+                    const expected = 'There are no misspelled words! Congrats!'
+                    expect(actual).toEqual(expected)
+                })
+            })
         })
     })
 })
