@@ -1,16 +1,14 @@
-import fs from 'fs';
 import { checkSpelling } from './spell-checker'
+import { readDictionaryFile, readComparisonFile } from './util'
 
 describe('spell-checker', () => {
-    const fullDictionary = fs.readFileSync('dictionary.txt', 'utf8').split('\n');
-
+    const fullDictionarySet = readDictionaryFile('dictionary.txt')
 
     describe('checkSpelling', () => {
         describe('simple use cases', () => {
             describe('when there are no misspelled words', () => {
-                const simpleDictionary = ['hello', 'world']
                 const simpleWordList = ['world']
-                const actual = checkSpelling(simpleDictionary, simpleWordList)
+                const actual = checkSpelling(fullDictionarySet, simpleWordList)
     
                 it('should output that there are no misspelled words', () => {
                     const expected = 'There are no misspelled words! Congrats!'
@@ -18,30 +16,38 @@ describe('spell-checker', () => {
                 })
             })
             describe('when there is a misspelled word', () => {
-                const simpleDictionary = ['hello', 'world']
-                const misspelledWordList = ['hello', 'wold']
-                const actual = checkSpelling(simpleDictionary, misspelledWordList)
+                const misspelledWordList = ['hello', 'wozld']
+                const actual = checkSpelling(fullDictionarySet, misspelledWordList)
 
                 it('should output the misspelled word', () => {
-                    const expected = 'wold'
+                    const expected = 'wozld'
                     expect(actual).toEqual(expected)
                 })
             })
 
             describe('when there are multiple misspelled words', () => {
-                const simpleDictionary = ['hello', 'world']
-                const misspelledWordList = ['hello', 'wold', 'huld']
-                const actual = checkSpelling(simpleDictionary, misspelledWordList)
+                const misspelledWordList = ['hello', 'wozld', 'huld']
+                const actual = checkSpelling(fullDictionarySet, misspelledWordList)
 
                 it('should output the misspelled words in a list joined by a comma', () => {
-                    const expected = 'wold, huld'
+                    const expected = 'wozld, huld'
                     expect(actual).toEqual(expected)
                 })
             })
 
             describe('when there is a long list of words with no misspelled words', () => {
-                const longWordList = fs.readFileSync('mock-data/super-long-list-of-words.txt', 'utf8').split(/\s+/)
-                const actual = checkSpelling(fullDictionary, longWordList)
+                const longWordList = readComparisonFile('mock-data/simple-super-long-list-of-words.txt')
+                const actual = checkSpelling(fullDictionarySet, longWordList)
+
+                it('should output that there are no misspelled words in a performant manner', () => {
+                    const expected = 'There are no misspelled words! Congrats!'
+                    expect(actual).toEqual(expected)
+                })
+            })
+
+            describe('when there is a list of words with sentence casing and punctuation', () => {
+                const longWordList = readComparisonFile('mock-data/simple-sentence-casing-and-punctuation.txt')
+                const actual = checkSpelling(fullDictionarySet, longWordList)
 
                 it('should output that there are no misspelled words in a performant manner', () => {
                     const expected = 'There are no misspelled words! Congrats!'

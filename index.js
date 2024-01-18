@@ -1,5 +1,5 @@
-import fs from 'fs';
 import { checkSpelling } from './spell-checker.js';
+import { readDictionaryFile, readComparisonFile } from './util.js';
 
 const args = process.argv.slice(2);
 
@@ -11,10 +11,10 @@ if (!pathToDictionary || !pathToCompareFile) {
 }
 
 try {
-    const dictionaryList = fs.readFileSync(pathToDictionary, 'utf8').split('\n');
-    const wordList = fs.readFileSync(pathToCompareFile, 'utf8').split(/\s+/);
+    const dictionarySet = readDictionaryFile(pathToDictionary);
+    const wordList = readComparisonFile(pathToCompareFile);
 
-    const spellCheck = checkSpelling(dictionaryList, wordList)
+    const spellCheck = checkSpelling(dictionarySet, wordList)
     console.log(spellCheck)
 } catch (error) {
     console.error(`There was an error when trying to spell check the files: ${error.message}`);

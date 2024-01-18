@@ -5,7 +5,7 @@ This simple spell checking library. It takes in as arguments the path to the dic
 `yarn check-spelling {pathToDictionary} {pathToFileToCheck}`
 
 - pathToDictionary: The path to a text dictionary file where each word is split into a new line.
-- pathToFileToCheck: The path to a file that has contains text where each word is split by a whitespace character. Each word does not necessarily need to be on its own new line.
+- pathToFileToCheck: The path to a file that has contains text where each word is split by a whitespace character. Each word does not necessarily need to be on its own new line. Sentence-casing is acceptable and punctuation is ignored.
 
 (To the reviewer... I hope you will forgive me for not making the program run in the binary-executable style shown in SPELL_CHECK.md. I was spending an unreasonable amount of time trying to figure out how to do it, that it made more sense to move on and just have a clear usage guide instead.)
 
@@ -27,6 +27,7 @@ For this task, here's my prioritized list of how I would work through this probl
 ### Should haves:
 - Program outputs a list of suggested words for each misspelled word
 - Program handles proper nouns correctly
+- Program handles conjunction words correctly
 
 ### Nice to haves:
 - Program includes the line and column number of the misspelled word
