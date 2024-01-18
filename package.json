@@ -8,7 +8,8 @@
   "license": "MIT",
   "scripts": {
     "check-spelling": "node index.js",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch --verbose"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test-watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch"
   },
   "type": "module",
   "devDependencies": {

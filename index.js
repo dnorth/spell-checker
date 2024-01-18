@@ -1,4 +1,4 @@
-import { checkSpelling } from './spell-checker.js';
+import { checkSpellingAndMakeSuggestions } from './spell-checker.js';
 import { readDictionaryFile, readComparisonFile } from './util.js';
 
 const args = process.argv.slice(2);
@@ -14,7 +14,7 @@ try {
     const dictionarySet = readDictionaryFile(pathToDictionary);
     const wordList = readComparisonFile(pathToCompareFile);
 
-    const spellCheck = checkSpelling(dictionarySet, wordList)
+    const spellCheck = checkSpellingAndMakeSuggestions(dictionarySet, wordList)
     console.log(spellCheck)
 } catch (error) {
     console.error(`There was an error when trying to spell check the files: ${error.message}`);
