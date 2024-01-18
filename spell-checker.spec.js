@@ -7,7 +7,7 @@ describe('spell-checker', () => {
     describe('checkSpelling', () => {
         describe('simple text files', () => {
             describe('when there are no misspelled words', () => {
-                const simpleWordList = ['world']
+                const simpleWordList = readComparisonFile('mock-data/simple-no-misspelled-words.txt')
                 const actual = checkSpelling(fullDictionarySet, simpleWordList)
     
                 it('should return an empty list', () => {
@@ -16,7 +16,7 @@ describe('spell-checker', () => {
                 })
             })
             describe('when there is a misspelled word', () => {
-                const misspelledWordList = ['hello', 'wozld']
+                const misspelledWordList = readComparisonFile('mock-data/simple-misspelled-word.txt')
                 const actual = checkSpelling(fullDictionarySet, misspelledWordList)
 
                 it('should return the misspelled word list', () => {
@@ -26,7 +26,7 @@ describe('spell-checker', () => {
             })
 
             describe('when there are multiple misspelled words', () => {
-                const misspelledWordList = ['hello', 'wozld', 'huld']
+                const misspelledWordList = readComparisonFile('mock-data/simple-misspelled-words.txt')
                 const actual = checkSpelling(fullDictionarySet, misspelledWordList)
 
                 it('should return the full list of mispelled words', () => {
