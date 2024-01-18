@@ -1,0 +1,17 @@
+{
+  "name": "spell-checker",
+  "version": "1.0.0",
+  "description": "simple application for spell checking",
+  "main": "index.js",
+  "repository": "git@github.com:dnorth/spell-checker.git",
+  "author": "Danny North <iamdnorth@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "check-spelling": "node index.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "type": "module",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
