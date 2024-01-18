@@ -10,6 +10,8 @@ This simple spell checking library. It takes in as arguments the path to the dic
 (To the reviewer... I hope you will forgive me for not making the program run in the binary-executable style shown in SPELL_CHECK.md. I was spending an unreasonable amount of time trying to figure out how to do it, that it made more sense to move on and just have a clear usage guide instead.)
 
 # Running Tests
+Install packages: `yarn`
+
 `yarn test`
 
 to run in watch mode: `yarn test-watch`
